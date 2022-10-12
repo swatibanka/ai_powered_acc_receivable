@@ -1,0 +1,15 @@
+Flask
+gunicorn
+importlib-metadata
+json5
+matplotlib
+pandas
+numpy
+plotly
+scikit-learn
+seaborn
+sklearn
+statsmodels
+streamlit
+
+
