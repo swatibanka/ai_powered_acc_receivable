@@ -77,7 +77,7 @@ df.drop('InvoiceDate_day', axis =1, inplace = True)
 #scaler = StandardScaler()
 #X_test = scaler.fit_transform(df)
 
-#model pickle
+#model pickle and data type conversion
 model_new = pickle.load(open("model.pkl", "rb"))
 
 pred_dayslate = model_new.predict(df)
@@ -96,14 +96,14 @@ result = pd.concat([df1,df2] ,axis=1, join='inner')
 # Create flask app
 app = Flask(__name__)
 
-
+# creating routes
 @app.route("/", methods = ["POST","GET"])
 def Home():
     return jsonify("Hello World")
 
 @app.route("/predict_dayslate", methods = ["GET","POST"])
 def predict_dayslate():
-    json_data = result.to_json()
+    json_data = result.to_json(orient='records')
     return (json_data)
 
 if __name__ == "__main__":
