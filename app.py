@@ -8,10 +8,23 @@ from datetime import date, timedelta
 
 df = pd.read_csv('Accounts-Receivable.csv')
 df1 = pd.read_csv('Accounts-Receivable.csv')
+#changing the type to datetype format
+df1['PaperlessDate'] = pd.to_datetime(df1['PaperlessDate'])
+df1['InvoiceDate'] = pd.to_datetime(df1['InvoiceDate'])
+df1['DueDate'] = pd.to_datetime(df1['DueDate'])
+df1['SettledDate'] = pd.to_datetime(df1['SettledDate'])
 
-#print(df)
+df1['PaperlessDate'] = pd.to_datetime(df1['PaperlessDate']).dt.strftime('%d-%m-%Y')
+df1['InvoiceDate'] = pd.to_datetime(df1['InvoiceDate']).dt.strftime('%d-%m-%Y')
+df1['DueDate'] = pd.to_datetime(df1['DueDate']).dt.strftime('%d-%m-%Y')
+df1['SettledDate'] = pd.to_datetime(df1['SettledDate']).dt.strftime('%d-%m-%Y')
+
+print(df1)
+
+
 
 # chnage the type of column
+
 df['countryCode'] = df['countryCode'].astype(object)
 df['invoiceNumber'] = df['invoiceNumber'].astype(object)
 
@@ -108,4 +121,5 @@ def predict_dayslate():
 
 if __name__ == "__main__":
         app.run()
+
 
